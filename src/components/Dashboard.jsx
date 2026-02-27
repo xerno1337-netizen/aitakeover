@@ -10,10 +10,16 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <Hero />
-      <ImpactMetrics />
-      <JobCategories />
-      <GlobalImpact />
-      <Timeline />
+      <div className="dashboard-grid">
+        <div className="dashboard-left">
+          <ImpactMetrics />
+          <JobCategories />
+        </div>
+        <div className="dashboard-right">
+          <GlobalImpact />
+          <Timeline />
+        </div>
+      </div>
     </div>
   )
 }
