@@ -1,26 +1,26 @@
 import React from 'react'
-import { globalStats } from '../data/jobData'
-import LiveCounter from './LiveCounter'
+import { evidenceStats } from '../data/jobData'
 import './ImpactMetrics.css'
 
 function ImpactMetrics() {
   return (
     <section className="metrics-panel">
       <div className="metrics-panel-head">
-        <h2>Core Metrics</h2>
-        <span>Updated every build</span>
+        <h2>Evidence Snapshot</h2>
+        <span>Report-backed metrics</span>
       </div>
 
-      <div className="metrics-primary-card">
-        <div className="metrics-primary-title">Estimated jobs exposed globally</div>
-        <div className="metrics-primary-value"><LiveCounter target={globalStats.totalJobsAtRisk} duration={2200} /></div>
-      </div>
-
-      <div className="metrics-mini-grid">
-        <article className="metrics-mini-card"><strong><LiveCounter target={globalStats.currentAutomationRate} suffix="%" /></strong><span>Current</span></article>
-        <article className="metrics-mini-card"><strong><LiveCounter target={globalStats.projectedAutomation2040} suffix="%" /></strong><span>2040</span></article>
-        <article className="metrics-mini-card"><strong>{globalStats.countriesMonitored}</strong><span>Countries</span></article>
-        <article className="metrics-mini-card"><strong>{globalStats.activeThreats}</strong><span>Categories</span></article>
+      <div className="metrics-evidence-list">
+        {evidenceStats.map((item) => (
+          <article key={item.id} className="metrics-evidence-item">
+            <div className="metrics-evidence-top">
+              <strong>{item.value}</strong>
+              <span>{item.source}</span>
+            </div>
+            <h3>{item.metric}</h3>
+            <p>{item.detail}</p>
+          </article>
+        ))}
       </div>
     </section>
   )
