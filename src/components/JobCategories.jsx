@@ -11,12 +11,14 @@ function JobCategories() {
   )
 
   const visible = expanded ? filtered : filtered.slice(0, 6)
+  const growthCount = jobSignals.filter((item) => item.signal.toLowerCase().includes('growth')).length
+  const declineCount = jobSignals.length - growthCount
 
   return (
     <section className="jobs-panel">
       <div className="jobs-panel-head">
         <h2>Occupation Signals</h2>
-        <span>Decline + growth watchlist</span>
+        <span>{filtered.length} active • {declineCount} decline • {growthCount} growth</span>
       </div>
 
       <div className="jobs-filters">

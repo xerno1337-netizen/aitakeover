@@ -1,14 +1,40 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { AreaChart, Area, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { timelineData } from '../data/jobData'
 import './Timeline.css'
 
 function Timeline() {
+  const [selectedYear, setSelectedYear] = useState(timelineData[timelineData.length - 1].year)
+  const selected = useMemo(
+    () => timelineData.find((row) => row.year === selectedYear) ?? timelineData[timelineData.length - 1],
+    [selectedYear]
+  )
+
   return (
     <section className="timeline-panel">
       <div className="timeline-panel-head">
         <h2>2030 Scenario Trajectory</h2>
         <span>Cumulative + adoption proxy</span>
+      </div>
+
+      <div className="timeline-interactive">
+        <label htmlFor="year-range">
+          Selected year: <strong>{selected.year}</strong>
+        </label>
+        <input
+          id="year-range"
+          type="range"
+          min={timelineData[0].year}
+          max={timelineData[timelineData.length - 1].year}
+          step="1"
+          value={selectedYear}
+          onChange={(e) => setSelectedYear(Number(e.target.value))}
+        />
+        <div className="timeline-kpis">
+          <span>{(selected.displacedCumulative / 1_000_000).toFixed(0)}M displaced</span>
+          <span>{(selected.createdCumulative / 1_000_000).toFixed(0)}M created</span>
+          <span>{selected.genAiAdoptionPct}% adoption</span>
+        </div>
       </div>
 
       <div className="timeline-panel-chart">

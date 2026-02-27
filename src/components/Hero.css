@@ -62,6 +62,9 @@
   margin-top: 0.08rem;
   font-size: 0.73rem;
   color: #9eb0d7;
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
 }
 
 .hero-shell-right {

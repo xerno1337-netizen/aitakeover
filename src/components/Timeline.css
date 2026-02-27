@@ -17,6 +17,41 @@
 .timeline-panel-head h2 { font-size: 1rem; color: #f2f6ff; }
 .timeline-panel-head span { font-size: 0.72rem; color: #9cb1db; text-transform: uppercase; }
 
+.timeline-interactive {
+  border: 1px solid #334464;
+  border-radius: 10px;
+  background: #131d31;
+  padding: 0.55rem 0.6rem;
+  margin-bottom: 0.55rem;
+}
+
+.timeline-interactive label {
+  display: block;
+  font-size: 0.72rem;
+  color: #b8caea;
+}
+
+.timeline-interactive input {
+  width: 100%;
+  margin-top: 0.3rem;
+}
+
+.timeline-kpis {
+  margin-top: 0.3rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.timeline-kpis span {
+  font-size: 0.68rem;
+  border: 1px solid #2e3e60;
+  border-radius: 999px;
+  padding: 0.18rem 0.45rem;
+  color: #d3def5;
+  background: #18233b;
+}
+
 .timeline-panel-chart {
   border: 1px solid #334464;
   border-radius: 10px;
