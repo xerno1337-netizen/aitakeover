@@ -1,7 +1,12 @@
-.global-map-section {
+.global-impact {
+  padding: 6rem 2rem;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.section-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
 }
 
 .map-container {
@@ -10,7 +15,7 @@
   border: 1px solid #e5e5e5;
   border-radius: 16px;
   padding: 2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
@@ -18,10 +23,9 @@
   background: #fafafa;
   border-radius: 12px;
   overflow: hidden;
-  position: relative;
 }
 
-.country-detail-panel {
+.country-detail {
   position: absolute;
   top: 2rem;
   right: 2rem;
@@ -34,7 +38,7 @@
   z-index: 10;
 }
 
-.panel-header {
+.detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -43,21 +47,19 @@
   border-bottom: 1px solid #e5e5e5;
 }
 
-.panel-header h3 {
+.detail-header h3 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
   margin: 0;
 }
 
-.panel-header button {
+.detail-header button {
   background: transparent;
   border: none;
   font-size: 1.5rem;
   color: #666;
   cursor: pointer;
-  line-height: 1;
-  padding: 0;
   width: 28px;
   height: 28px;
   display: flex;
@@ -67,15 +69,9 @@
   transition: all 0.2s ease;
 }
 
-.panel-header button:hover {
+.detail-header button:hover {
   background: #f5f5f5;
   color: #1a1a1a;
-}
-
-.panel-content {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
 }
 
 .detail-grid {
@@ -97,57 +93,63 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
-  font-weight: 500;
 }
 
 .detail-value {
   font-size: 1.5rem;
   font-weight: 600;
   color: #1a1a1a;
-  font-variant-numeric: tabular-nums;
 }
 
-.map-legend {
+.top-countries {
   background: #fafafa;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
-  padding: 1.5rem;
-  text-align: center;
+  padding: 2rem;
 }
 
-.legend-title {
+.top-countries h3 {
+  font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  margin-bottom: 1.5rem;
 }
 
-.legend-items {
+.countries-list {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.legend-item {
-  display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.75rem;
-  font-size: 0.875rem;
-  color: #666;
 }
 
-.legend-color {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
+.country-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background: #ffffff;
   border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.country-item:hover {
+  border-color: #d0d0d0;
+  transform: translateX(4px);
+}
+
+.country-name {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.country-threat {
+  font-weight: 700;
+  font-size: 1.125rem;
 }
 
 @media (max-width: 1024px) {
-  .country-detail-panel {
+  .country-detail {
     position: relative;
     top: auto;
     right: auto;
@@ -156,8 +158,8 @@
 }
 
 @media (max-width: 768px) {
-  .global-map-section {
-    padding: 0 1rem;
+  .global-impact {
+    padding: 4rem 1rem;
   }
   
   .map-container {
@@ -166,10 +168,5 @@
   
   .detail-grid {
     grid-template-columns: 1fr;
-  }
-  
-  .legend-items {
-    flex-direction: column;
-    gap: 1rem;
   }
 }

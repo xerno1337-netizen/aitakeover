@@ -1,55 +1,33 @@
-.timeline-chart {
-  width: 100%;
+.timeline {
+  padding: 6rem 2rem;
+  background: #fafafa;
 }
 
-.timeline-header {
-  text-align: center;
-  margin-bottom: 3rem;
+.section-container {
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
-.timeline-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-header p {
-  color: #666;
-  font-size: 0.95rem;
-}
-
-.chart-container {
+.charts-container {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
 .chart-card {
-  background: #fafafa;
+  background: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 12px;
+  border-radius: 16px;
   padding: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .chart-card h3 {
   font-size: 1.25rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 1.5rem;
-}
-
-.timeline-insights {
-  margin-top: 3rem;
-}
-
-.timeline-insights h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1a1a1a;
   margin-bottom: 2rem;
-  text-align: center;
 }
 
 .milestones {
@@ -59,27 +37,27 @@
 }
 
 .milestone {
-  background: #fafafa;
+  background: #ffffff;
   border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 1.5rem;
   display: flex;
   gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .milestone:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #d0d0d0;
 }
 
 .milestone-year {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #dc2626;
-  min-width: 60px;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #3b82f6;
+  min-width: 80px;
   text-align: center;
-  padding-top: 0.25rem;
 }
 
 .milestone-content {
@@ -88,7 +66,7 @@
 
 .milestone-content strong {
   display: block;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-weight: 600;
   color: #1a1a1a;
   margin-bottom: 0.5rem;
@@ -102,6 +80,10 @@
 }
 
 @media (max-width: 768px) {
+  .timeline {
+    padding: 4rem 1rem;
+  }
+  
   .chart-card {
     padding: 1.5rem;
   }

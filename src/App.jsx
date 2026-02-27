@@ -1,13 +1,9 @@
 import React from 'react'
-import ScannerDashboard from './components/ScannerDashboard'
+import Dashboard from './components/Dashboard'
 import './App.css'
 
 function App() {
-  return (
-    <div className="app">
-      <ScannerDashboard />
-    </div>
-  )
+  return <Dashboard />
 }
 
 export default App
