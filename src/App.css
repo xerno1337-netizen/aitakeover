@@ -1,0 +1,61 @@
+.app {
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.view-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: #fafafa;
+  border-bottom: 1px solid #e5e5e5;
+  flex-wrap: wrap;
+}
+
+.view-nav button {
+  padding: 0.75rem 1.5rem;
+  background: transparent;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-nav button:hover {
+  background: #f5f5f5;
+  border-color: #d0d0d0;
+  color: #333;
+}
+
+.view-nav button.active {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-color: #1a1a1a;
+}
+
+.main-content {
+  padding: 3rem 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .view-nav {
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+  
+  .view-nav button {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+  
+  .main-content {
+    padding: 2rem 1rem;
+  }
+}
