@@ -4,17 +4,41 @@ import ImpactMetrics from './ImpactMetrics'
 import JobCategories from './JobCategories'
 import GlobalImpact from './GlobalImpact'
 import Timeline from './Timeline'
+import ScenarioLab from './ScenarioLab'
 import './Dashboard.css'
 
 function Dashboard() {
-  const [activeTab, setActiveTab] = useState('analysis')
+  const [activeTab, setActiveTab] = useState('overview')
 
-  const handleNavClick = (tab, targetId) => {
-    setActiveTab(tab)
-    const target = document.getElementById(targetId)
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const renderTabContent = () => {
+    if (activeTab === 'overview') {
+      return (
+        <main className="dashboard-main-grid">
+          <section className="dashboard-panel"><ImpactMetrics /></section>
+          <section className="dashboard-panel"><GlobalImpact /></section>
+          <section className="dashboard-panel"><JobCategories /></section>
+          <section className="dashboard-panel"><Timeline /></section>
+        </main>
+      )
     }
+
+    if (activeTab === 'evidence') {
+      return <div className="dashboard-single"><ImpactMetrics /></div>
+    }
+
+    if (activeTab === 'signals') {
+      return <div className="dashboard-single"><JobCategories /></div>
+    }
+
+    if (activeTab === 'timeline') {
+      return <div className="dashboard-single"><Timeline /></div>
+    }
+
+    if (activeTab === 'scenario') {
+      return <div className="dashboard-single"><ScenarioLab /></div>
+    }
+
+    return <div className="dashboard-single"><GlobalImpact /></div>
   }
 
   return (
@@ -22,48 +46,20 @@ function Dashboard() {
       <header className="dashboard-topbar">
         <div className="topbar-brand">AIScope</div>
         <nav className="topbar-nav">
-          <button
-            type="button"
-            className={activeTab === 'map' ? 'topbar-link active' : 'topbar-link'}
-            onClick={() => handleNavClick('map', 'panel-map')}
-          >
-            Map
-          </button>
-          <button
-            type="button"
-            className={activeTab === 'database' ? 'topbar-link active' : 'topbar-link'}
-            onClick={() => handleNavClick('database', 'panel-jobs')}
-          >
-            Database
-          </button>
-          <button
-            type="button"
-            className={activeTab === 'analysis' ? 'topbar-link active' : 'topbar-link'}
-            onClick={() => handleNavClick('analysis', 'panel-metrics')}
-          >
-            Analysis
-          </button>
-          <button
-            type="button"
-            className={activeTab === 'briefing' ? 'topbar-link active' : 'topbar-link'}
-            onClick={() => handleNavClick('briefing', 'panel-timeline')}
-          >
-            Briefing
-          </button>
+          <button type="button" className={activeTab === 'overview' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('overview')}>Overview</button>
+          <button type="button" className={activeTab === 'evidence' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('evidence')}>Evidence</button>
+          <button type="button" className={activeTab === 'signals' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('signals')}>Signals</button>
+          <button type="button" className={activeTab === 'timeline' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('timeline')}>Timeline</button>
+          <button type="button" className={activeTab === 'scenario' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('scenario')}>Scenario Lab</button>
+          <button type="button" className={activeTab === 'sources' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('sources')}>Sources</button>
         </nav>
         <div className="topbar-actions">
-          <button type="button">Subscribe</button>
+          <button type="button">Data Notes</button>
         </div>
       </header>
 
       <Hero />
-
-      <main className="dashboard-main-grid">
-        <section id="panel-metrics" className="dashboard-panel panel-metrics"><ImpactMetrics /></section>
-        <section id="panel-map" className="dashboard-panel panel-map"><GlobalImpact /></section>
-        <section id="panel-jobs" className="dashboard-panel panel-jobs"><JobCategories /></section>
-        <section id="panel-timeline" className="dashboard-panel panel-timeline"><Timeline /></section>
-      </main>
+      {renderTabContent()}
     </div>
   )
 }
