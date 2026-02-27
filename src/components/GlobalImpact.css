@@ -1,9 +1,14 @@
 .global-impact {
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.global-impact:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .section-container {
@@ -12,6 +17,8 @@
 
 .section-header {
   margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .section-header h2 {
@@ -29,17 +36,19 @@
 
 .map-container {
   position: relative;
-  background: #fafafa;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 12px;
+  padding: 1.25rem;
   margin-bottom: 1.5rem;
   min-height: 300px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
 }
 
 .map-wrapper {
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .country-detail {
@@ -48,11 +57,24 @@
   right: 1rem;
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1rem;
-  min-width: 200px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem;
+  min-width: 220px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   z-index: 10;
+  backdrop-filter: blur(10px);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .detail-header {
@@ -100,8 +122,9 @@
 .detail-item {
   text-align: center;
   padding: 0.75rem;
-  background: #fafafa;
-  border-radius: 6px;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
 }
 
 .detail-label {
@@ -119,10 +142,10 @@
 }
 
 .top-countries {
-  background: #fafafa;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 12px;
+  padding: 1.25rem;
 }
 
 .top-countries h3 {
@@ -159,17 +182,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem;
+  padding: 0.875rem;
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .country-item:hover {
   border-color: #d0d0d0;
-  transform: translateX(2px);
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .country-name {
@@ -194,11 +218,11 @@
 
 @media (max-width: 768px) {
   .global-impact {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   
   .map-container {
-    padding: 0.75rem;
+    padding: 1rem;
     min-height: 250px;
   }
   

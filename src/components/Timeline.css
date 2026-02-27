@@ -1,9 +1,14 @@
 .timeline {
   background: #ffffff;
   border: 1px solid #e5e5e5;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.timeline:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .section-container {
@@ -12,6 +17,8 @@
 
 .section-header {
   margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .section-header h2 {
@@ -35,17 +42,18 @@
 }
 
 .chart-card {
-  background: #fafafa;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1.25rem;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .chart-card h3 {
   font-size: 1rem;
   font-weight: 600;
   color: #1a1a1a;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .milestones {
@@ -55,25 +63,46 @@
 }
 
 .milestone {
-  background: #fafafa;
+  background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
   border: 1px solid #e5e5e5;
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: 10px;
+  padding: 1.25rem;
   display: flex;
   gap: 0.75rem;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.milestone::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(180deg, #3b82f6, #10b981);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .milestone:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   border-color: #d0d0d0;
 }
 
+.milestone:hover::before {
+  opacity: 1;
+}
+
 .milestone-year {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #3b82f6;
+  font-size: 1.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #3b82f6 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   min-width: 50px;
   text-align: center;
 }
@@ -99,11 +128,11 @@
 
 @media (max-width: 768px) {
   .timeline {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   
   .chart-card {
-    padding: 1rem;
+    padding: 1.25rem;
   }
   
   .milestones {
