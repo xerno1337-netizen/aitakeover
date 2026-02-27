@@ -26,8 +26,20 @@
 .topbar-nav {
   display: flex;
   gap: 1rem;
-  font-size: 0.85rem;
+}
+
+.topbar-link {
+  border: none;
+  background: transparent;
   color: #c8c8c8;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 0.2rem 0;
+}
+
+.topbar-link.active {
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
 }
 
 .topbar-actions button {
