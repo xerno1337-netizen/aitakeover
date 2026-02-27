@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { evidenceStats, sourceLinks } from '../data/jobData'
+import { evidenceStats, sourceLinks, regionalExposure } from '../data/jobData'
 import './GlobalImpact.css'
 
 function GlobalImpact() {
@@ -10,7 +10,7 @@ function GlobalImpact() {
     <section className="map-panel">
       <div className="map-panel-head">
         <h2>Methodology & Sources</h2>
-        <span>No synthetic country feed</span>
+        <span>Transparent assumptions</span>
       </div>
 
       <div className="map-panel-body">
@@ -35,6 +35,16 @@ function GlobalImpact() {
               <small>{selected.source}</small>
             </div>
           )}
+
+          <h3 className="sources-subtitle">Regional IMF split</h3>
+          <div className="sources-mini-table">
+            {regionalExposure.map((row) => (
+              <div key={row.region} className="sources-mini-row">
+                <span>{row.region}</span>
+                <strong>{row.exposurePct}%</strong>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="map-panel-side">
@@ -45,6 +55,13 @@ function GlobalImpact() {
                 <span>{source.title}</span>
               </a>
             ))}
+          </div>
+          <div className="method-note">
+            <h4>Interpretation note</h4>
+            <p>
+              Exposure metrics describe task-level susceptibility. They do not imply full occupation elimination.
+              Displacement and creation figures are scenario-based labor-market restructuring estimates.
+            </p>
           </div>
         </div>
       </div>

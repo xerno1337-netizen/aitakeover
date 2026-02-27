@@ -1,9 +1,10 @@
 .map-panel {
   height: 100%;
-  background: #fff;
-  border: 1px solid #dfe3ea;
+  background: #0f1626;
+  border: 1px solid #2d3955;
   border-radius: 12px;
   padding: 1rem;
+  color: #dbe6ff;
 }
 
 .map-panel-head {
@@ -13,117 +14,93 @@
   margin-bottom: 0.75rem;
 }
 
-.map-panel-head h2 {
-  font-size: 1rem;
-  color: #111827;
-}
-
-.map-panel-head span {
-  font-size: 0.72rem;
-  color: #667085;
-  text-transform: uppercase;
-}
+.map-panel-head h2 { font-size: 1rem; color: #f2f6ff; }
+.map-panel-head span { font-size: 0.72rem; color: #9cb1db; text-transform: uppercase; }
 
 .map-panel-body {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  gap: 0.8rem;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 0.75rem;
   min-height: 430px;
 }
 
 .map-panel-canvas,
 .map-panel-side {
-  border: 1px solid #e7ebf2;
+  border: 1px solid #334464;
   border-radius: 10px;
-  background: #fbfcff;
-  padding: 0.8rem;
+  background: #131d31;
+  padding: 0.7rem;
 }
 
 .sources-list-card h3,
 .map-panel-side h3 {
-  font-size: 0.85rem;
+  font-size: 0.73rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #667085;
-  margin-bottom: 0.5rem;
+  color: #9cb1db;
+  margin-bottom: 0.45rem;
 }
 
-.sources-signals {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.4rem;
-}
+.sources-signals { display: grid; grid-template-columns: 1fr; gap: 0.35rem; }
 
 .source-signal {
-  border: 1px solid #e5e9f0;
-  background: #fff;
+  border: 1px solid #334464;
+  background: #17233b;
   border-radius: 8px;
-  padding: 0.55rem;
+  padding: 0.48rem;
   text-align: left;
 }
 
 .source-signal.active {
-  border-color: #94a3b8;
-  background: #f8fafc;
+  border-color: #5073b8;
+  background: #1b2a46;
 }
 
-.source-signal strong {
-  display: block;
-  font-size: 1rem;
-  color: #111827;
-}
+.source-signal strong { display: block; font-size: 0.92rem; color: #f1f5ff; }
+.source-signal span { display: block; font-size: 0.68rem; color: #a9bbdf; }
 
-.source-signal span {
-  display: block;
-  font-size: 0.75rem;
-  color: #475467;
-}
+.source-detail { margin-top: 0.55rem; border-top: 1px solid #2f3f60; padding-top: 0.55rem; }
+.source-detail h4 { font-size: 0.82rem; color: #f1f5ff; }
+.source-detail p { font-size: 0.72rem; color: #bbcae7; margin-top: 0.2rem; }
+.source-detail small { font-size: 0.66rem; color: #8ea3ce; }
 
-.source-detail {
-  margin-top: 0.6rem;
-  border-top: 1px solid #e5e9f0;
-  padding-top: 0.6rem;
-}
-
-.source-detail h4 {
-  font-size: 0.9rem;
-  color: #111827;
-}
-
-.source-detail p {
-  font-size: 0.78rem;
-  color: #475467;
-  margin-top: 0.2rem;
-}
-
-.source-detail small {
-  font-size: 0.72rem;
-  color: #64748b;
-}
-
-.map-country-list {
+.sources-subtitle { margin-top: 0.65rem; }
+.sources-mini-table { display: grid; gap: 0.3rem; }
+.sources-mini-row {
+  border: 1px solid #334464;
+  border-radius: 8px;
+  background: #17233b;
+  padding: 0.35rem 0.45rem;
   display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
+  justify-content: space-between;
+  font-size: 0.7rem;
 }
 
+.sources-mini-row span { color: #bfd0f1; }
+.sources-mini-row strong { color: #f1f5ff; }
+
+.map-country-list { display: flex; flex-direction: column; gap: 0.35rem; }
 .map-country-item {
-  border: 1px solid #e5e9f0;
-  background: #fff;
-  border-radius: 7px;
-  padding: 0.45rem 0.55rem;
-  font-size: 0.78rem;
-  color: #1d4ed8;
+  border: 1px solid #334464;
+  background: #17233b;
+  border-radius: 8px;
+  padding: 0.4rem 0.48rem;
+  font-size: 0.72rem;
+  color: #a8c7ff;
   text-decoration: none;
 }
 
-.map-country-item:hover {
-  background: #f8fafc;
+.map-country-item:hover { background: #1b2a46; }
+
+.method-note {
+  margin-top: 0.55rem;
+  border-top: 1px solid #2f3f60;
+  padding-top: 0.55rem;
 }
 
+.method-note h4 { font-size: 0.74rem; color: #d8e4ff; text-transform: uppercase; margin-bottom: 0.2rem; }
+.method-note p { font-size: 0.7rem; color: #9cb1db; line-height: 1.45; }
+
 @media (max-width: 760px) {
-  .map-panel-body {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
+  .map-panel-body { grid-template-columns: 1fr; min-height: auto; }
 }

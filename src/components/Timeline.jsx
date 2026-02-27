@@ -7,24 +7,24 @@ function Timeline() {
   return (
     <section className="timeline-panel">
       <div className="timeline-panel-head">
-        <h2>2030 Scenario (WEF)</h2>
-        <span>Cumulative change, 2025-2030</span>
+        <h2>2030 Scenario Trajectory</h2>
+        <span>Cumulative + adoption proxy</span>
       </div>
 
       <div className="timeline-panel-chart">
-        <ResponsiveContainer width="100%" height={250}>
+        <ResponsiveContainer width="100%" height={220}>
           <AreaChart data={timelineData}>
             <defs>
               <linearGradient id="tlDisp" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#dc2626" stopOpacity={0.25} />
-                <stop offset="95%" stopColor="#dc2626" stopOpacity={0} />
+                <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#ef4444" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e8ecf3" />
-            <XAxis dataKey="year" stroke="#667085" tick={{ fontSize: 11 }} />
-            <YAxis stroke="#667085" tick={{ fontSize: 11 }} />
-            <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #dfe3ea' }} />
-            <Area type="monotone" dataKey="displacedCumulative" stroke="#dc2626" strokeWidth={2} fill="url(#tlDisp)" name="Displaced" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#2c3a58" />
+            <XAxis dataKey="year" stroke="#9cb1db" tick={{ fontSize: 11 }} />
+            <YAxis stroke="#9cb1db" tick={{ fontSize: 11 }} />
+            <Tooltip contentStyle={{ backgroundColor: '#111a2b', border: '1px solid #334464', color: '#dbe6ff' }} />
+            <Area type="monotone" dataKey="displacedCumulative" stroke="#ef4444" strokeWidth={2} fill="url(#tlDisp)" name="Displaced" />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -32,16 +32,27 @@ function Timeline() {
       <div className="timeline-panel-chart">
         <ResponsiveContainer width="100%" height={220}>
           <LineChart data={timelineData}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e8ecf3" />
-            <XAxis dataKey="year" stroke="#667085" tick={{ fontSize: 11 }} />
-            <YAxis stroke="#667085" tick={{ fontSize: 11 }} />
-            <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #dfe3ea' }} />
-            <Legend />
-            <Line type="monotone" dataKey="displacedCumulative" stroke="#dc2626" strokeWidth={2} dot={false} name="Displaced" />
-            <Line type="monotone" dataKey="createdCumulative" stroke="#10b981" strokeWidth={2} dot={false} name="Created" />
-            <Line type="monotone" dataKey="netCumulative" stroke="#3b82f6" strokeWidth={2} dot={false} name="Net" />
+            <CartesianGrid strokeDasharray="3 3" stroke="#2c3a58" />
+            <XAxis dataKey="year" stroke="#9cb1db" tick={{ fontSize: 11 }} />
+            <YAxis stroke="#9cb1db" tick={{ fontSize: 11 }} />
+            <Tooltip contentStyle={{ backgroundColor: '#111a2b', border: '1px solid #334464', color: '#dbe6ff' }} />
+            <Legend wrapperStyle={{ color: '#c6d5f4' }} />
+            <Line type="monotone" dataKey="createdCumulative" stroke="#22c55e" strokeWidth={2} dot={false} name="Created" />
+            <Line type="monotone" dataKey="netCumulative" stroke="#60a5fa" strokeWidth={2} dot={false} name="Net" />
+            <Line type="monotone" dataKey="genAiAdoptionPct" stroke="#f59e0b" strokeWidth={2} dot={false} name="Adoption %" />
           </LineChart>
         </ResponsiveContainer>
+      </div>
+
+      <div className="timeline-mini-table">
+        {timelineData.map((row) => (
+          <div key={row.year} className="timeline-mini-row">
+            <span>{row.year}</span>
+            <span>{(row.displacedCumulative / 1_000_000).toFixed(0)}M disp</span>
+            <span>{(row.createdCumulative / 1_000_000).toFixed(0)}M created</span>
+            <span>{row.genAiAdoptionPct}% adoption</span>
+          </div>
+        ))}
       </div>
     </section>
   )

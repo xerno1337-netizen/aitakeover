@@ -1,9 +1,10 @@
 .timeline-panel {
   height: 100%;
-  background: #fff;
-  border: 1px solid #dfe3ea;
+  background: #0f1626;
+  border: 1px solid #2d3955;
   border-radius: 12px;
   padding: 1rem;
+  color: #dbe6ff;
 }
 
 .timeline-panel-head {
@@ -13,15 +14,41 @@
   margin-bottom: 0.7rem;
 }
 
-.timeline-panel-head h2 { font-size: 1rem; color: #111827; }
-.timeline-panel-head span { font-size: 0.72rem; color: #667085; text-transform: uppercase; }
+.timeline-panel-head h2 { font-size: 1rem; color: #f2f6ff; }
+.timeline-panel-head span { font-size: 0.72rem; color: #9cb1db; text-transform: uppercase; }
 
 .timeline-panel-chart {
-  border: 1px solid #e7ebf2;
+  border: 1px solid #334464;
   border-radius: 10px;
-  background: #fbfcff;
-  padding: 0.6rem;
-  margin-bottom: 0.7rem;
+  background: #131d31;
+  padding: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
-.timeline-panel-chart:last-child { margin-bottom: 0; }
+.timeline-mini-table {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.timeline-mini-row {
+  border: 1px solid #334464;
+  border-radius: 8px;
+  background: #131d31;
+  padding: 0.35rem 0.45rem;
+  display: grid;
+  grid-template-columns: 0.45fr 1fr 1fr 1fr;
+  font-size: 0.68rem;
+  color: #b9caea;
+}
+
+.timeline-mini-row span:first-child {
+  color: #dbe6ff;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .timeline-mini-row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
