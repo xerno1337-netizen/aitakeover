@@ -1,0 +1,103 @@
+.scanner-dashboard {
+  min-height: 100vh;
+  background: #0a0a0f;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.scan-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+}
+
+.scan-lines {
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: scanMove 20s linear infinite;
+}
+
+@keyframes scanMove {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(50px, 50px);
+  }
+}
+
+.scan-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 0, 150, 0.05) 0%, transparent 50%);
+  animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.dashboard-content {
+  position: relative;
+  z-index: 2;
+  padding: 0;
+}
+
+.main-scanner-section {
+  padding: 2rem 0;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.map-section {
+  padding: 4rem 0;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.timeline-section {
+  padding: 4rem 0;
+  animation: fadeInUp 1s ease-out 0.4s both;
+}
+
+.jobs-section {
+  padding: 4rem 0 6rem;
+  animation: fadeInUp 1s ease-out 0.6s both;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-scanner-section,
+  .map-section,
+  .timeline-section,
+  .jobs-section {
+    padding: 2rem 0;
+  }
+}

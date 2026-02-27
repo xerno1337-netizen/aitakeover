@@ -1,0 +1,126 @@
+.timeline-section {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.chart-card {
+  background: rgba(15, 15, 25, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chart-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.chart-header h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.chart-badge {
+  padding: 0.5rem 1rem;
+  background: rgba(255, 0, 102, 0.2);
+  border: 1px solid rgba(255, 0, 102, 0.3);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ff0066;
+}
+
+.milestones {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.milestone {
+  background: rgba(15, 15, 25, 0.6);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.milestone:hover {
+  transform: translateY(-4px);
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(0, 255, 255, 0.15);
+}
+
+.milestone-year {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  min-width: 80px;
+  text-align: center;
+  padding-top: 0.25rem;
+}
+
+.milestone-content {
+  flex: 1;
+}
+
+.milestone-content strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.milestone-content p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .timeline-section {
+    padding: 2rem 1rem;
+  }
+  
+  .chart-card {
+    padding: 1.5rem;
+  }
+  
+  .milestones {
+    grid-template-columns: 1fr;
+  }
+  
+  .milestone {
+    flex-direction: column;
+  }
+  
+  .milestone-year {
+    min-width: auto;
+  }
+}
