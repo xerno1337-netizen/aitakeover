@@ -5,6 +5,7 @@ import './ScenarioLab.css'
 function ScenarioLab() {
   const [disruptionMultiplier, setDisruptionMultiplier] = useState(1.7)
   const [reskillingBuffer, setReskillingBuffer] = useState(28)
+  const [selectedBand, setSelectedBand] = useState(scenarioBands[0]?.label ?? '')
 
   const scenario = useMemo(() => {
     const baselineDisplacedPerYear = globalStats.jobsDisplacedBy2030 / 5
@@ -22,6 +23,7 @@ function ScenarioLab() {
   }, [disruptionMultiplier, reskillingBuffer])
 
   const fmt = (n) => `${(n / 1_000_000).toFixed(1)}M`
+  const stressScore = Math.max(0, Math.min(100, Math.round((disruptionMultiplier * 35) + (50 - reskillingBuffer))))
 
   return (
     <section className="scenario-panel">
@@ -47,10 +49,36 @@ function ScenarioLab() {
         </label>
       </div>
 
+      <div className="scenario-presets">
+        {scenarioBands.map((band) => (
+          <button
+            key={band.label}
+            className={selectedBand === band.label ? 'active' : ''}
+            onClick={() => {
+              setSelectedBand(band.label)
+              setDisruptionMultiplier(band.disruptionMultiplier)
+              setReskillingBuffer(band.reskillingBufferPct)
+            }}
+          >
+            {band.label}
+          </button>
+        ))}
+      </div>
+
       <div className="scenario-grid">
         <article><h3>Displaced (2030-2040)</h3><strong>{fmt(scenario.displacedTo2040)}</strong></article>
         <article><h3>Created (2030-2040)</h3><strong>{fmt(scenario.createdTo2040)}</strong></article>
         <article><h3>Net Impact</h3><strong className={scenario.netTo2040 >= 0 ? 'up' : 'down'}>{fmt(scenario.netTo2040)}</strong></article>
+      </div>
+
+      <div className="scenario-stress">
+        <div>
+          <span>Stress Score</span>
+          <strong>{stressScore}/100</strong>
+        </div>
+        <div className="scenario-stress-bar">
+          <div style={{ width: `${stressScore}%` }} />
+        </div>
       </div>
 
       <div className="scenario-band-table">

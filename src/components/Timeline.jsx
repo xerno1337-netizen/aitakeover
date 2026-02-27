@@ -1,14 +1,35 @@
-import React, { useMemo, useState } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { AreaChart, Area, CartesianGrid, Legend, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import { timelineData } from '../data/jobData'
 import './Timeline.css'
 
 function Timeline() {
   const [selectedYear, setSelectedYear] = useState(timelineData[timelineData.length - 1].year)
+  const [compareYear, setCompareYear] = useState(timelineData[0].year)
+  const [isPlaying, setIsPlaying] = useState(false)
   const selected = useMemo(
     () => timelineData.find((row) => row.year === selectedYear) ?? timelineData[timelineData.length - 1],
     [selectedYear]
   )
+  const compared = useMemo(
+    () => timelineData.find((row) => row.year === compareYear) ?? timelineData[0],
+    [compareYear]
+  )
+
+  useEffect(() => {
+    if (!isPlaying) return undefined
+    const timer = setInterval(() => {
+      setSelectedYear((prev) => {
+        const max = timelineData[timelineData.length - 1].year
+        const min = timelineData[0].year
+        return prev >= max ? min : prev + 1
+      })
+    }, 1200)
+    return () => clearInterval(timer)
+  }, [isPlaying])
+
+  const deltaDisplaced = selected.displacedCumulative - compared.displacedCumulative
+  const deltaCreated = selected.createdCumulative - compared.createdCumulative
 
   return (
     <section className="timeline-panel">
@@ -18,9 +39,14 @@ function Timeline() {
       </div>
 
       <div className="timeline-interactive">
-        <label htmlFor="year-range">
+        <div className="timeline-controls">
+          <label htmlFor="year-range">
           Selected year: <strong>{selected.year}</strong>
-        </label>
+          </label>
+          <button type="button" onClick={() => setIsPlaying((v) => !v)}>
+            {isPlaying ? 'Pause' : 'Play'}
+          </button>
+        </div>
         <input
           id="year-range"
           type="range"
@@ -34,6 +60,22 @@ function Timeline() {
           <span>{(selected.displacedCumulative / 1_000_000).toFixed(0)}M displaced</span>
           <span>{(selected.createdCumulative / 1_000_000).toFixed(0)}M created</span>
           <span>{selected.genAiAdoptionPct}% adoption</span>
+        </div>
+        <label htmlFor="compare-range">
+          Compare with: <strong>{compared.year}</strong>
+        </label>
+        <input
+          id="compare-range"
+          type="range"
+          min={timelineData[0].year}
+          max={timelineData[timelineData.length - 1].year}
+          step="1"
+          value={compareYear}
+          onChange={(e) => setCompareYear(Number(e.target.value))}
+        />
+        <div className="timeline-kpis">
+          <span>{(deltaDisplaced / 1_000_000).toFixed(0)}M displaced delta</span>
+          <span>{(deltaCreated / 1_000_000).toFixed(0)}M created delta</span>
         </div>
       </div>
 

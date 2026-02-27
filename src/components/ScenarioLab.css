@@ -41,6 +41,29 @@
 
 .scenario-controls input { width: 100%; }
 
+.scenario-presets {
+  margin-top: 0.7rem;
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.scenario-presets button {
+  border: 1px solid #2f3d5b;
+  background: #141d30;
+  color: #b3c2e0;
+  border-radius: 999px;
+  padding: 0.24rem 0.55rem;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+}
+
+.scenario-presets button.active {
+  border-color: #4e6597;
+  background: #1a2946;
+  color: #f1f5ff;
+}
+
 .scenario-grid {
   margin-top: 0.9rem;
   display: grid;
@@ -65,6 +88,45 @@
 .scenario-grid strong { font-size: 1.25rem; color: #f1f5ff; }
 .scenario-grid strong.up { color: #22c55e; }
 .scenario-grid strong.down { color: #ef4444; }
+
+.scenario-stress {
+  margin-top: 0.7rem;
+  border: 1px solid #2f3d5b;
+  border-radius: 10px;
+  background: #141d30;
+  padding: 0.55rem 0.6rem;
+}
+
+.scenario-stress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scenario-stress span {
+  font-size: 0.7rem;
+  color: #9fb0d6;
+  text-transform: uppercase;
+}
+
+.scenario-stress strong {
+  font-size: 0.9rem;
+  color: #f1f5ff;
+}
+
+.scenario-stress-bar {
+  margin-top: 0.35rem;
+  border-radius: 999px;
+  background: #0f172a;
+  border: 1px solid #334464;
+  overflow: hidden;
+  height: 8px;
+}
+
+.scenario-stress-bar div {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e, #f59e0b, #ef4444);
+}
 
 .scenario-band-table {
   margin-top: 0.85rem;

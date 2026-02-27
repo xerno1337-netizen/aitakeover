@@ -31,6 +31,23 @@
   color: #b8caea;
 }
 
+.timeline-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.timeline-controls button {
+  border: 1px solid #364a71;
+  background: #1a2742;
+  color: #dbe6ff;
+  border-radius: 999px;
+  font-size: 0.66rem;
+  padding: 0.2rem 0.55rem;
+  text-transform: uppercase;
+}
+
 .timeline-interactive input {
   width: 100%;
   margin-top: 0.3rem;
