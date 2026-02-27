@@ -69,7 +69,7 @@ function Dashboard() {
           <button type="button" className={activeTab === 'sources' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('sources')}>Sources</button>
         </nav>
         <div className="topbar-actions">
-          <button type="button">1-6 Tabs</button>
+          <a href="https://x.com/_oqei" target="_blank" rel="noreferrer">Creator</a>
         </div>
       </header>
 
