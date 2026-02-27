@@ -42,6 +42,24 @@
 .metrics-evidence-item h3 { margin-top: 0.1rem; font-size: 0.8rem; color: #e7eeff; }
 .metrics-evidence-item p { margin-top: 0.18rem; font-size: 0.72rem; color: #b9c8e7; }
 
+.metrics-2026-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+}
+
+.metrics-2026-item {
+  border: 1px solid #334464;
+  border-radius: 10px;
+  background: #14213a;
+  padding: 0.5rem;
+}
+
+.metrics-2026-item strong { font-size: 0.92rem; color: #f3f7ff; }
+.metrics-2026-item h3 { margin-top: 0.16rem; font-size: 0.74rem; color: #dbe6ff; }
+.metrics-2026-item p { margin-top: 0.14rem; font-size: 0.68rem; color: #b9c8e7; }
+.metrics-2026-item small { display: block; margin-top: 0.14rem; font-size: 0.62rem; color: #8ea3ce; }
+
 .metrics-section-label {
   margin-top: 0.7rem;
   margin-bottom: 0.35rem;
@@ -69,6 +87,16 @@
 .metrics-table th { color: #9fb2da; font-weight: 600; text-transform: uppercase; font-size: 0.66rem; }
 .metrics-table td { color: #e2eaff; }
 
+.metrics-table th button {
+  border: none;
+  background: transparent;
+  color: #9fb2da;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0;
+}
+
 .metrics-sector-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -80,6 +108,12 @@
   border-radius: 10px;
   background: #131d31;
   padding: 0.55rem;
+  cursor: pointer;
+}
+
+.metrics-sector-item.active {
+  border-color: #5572ac;
+  background: #182643;
 }
 
 .metrics-sector-top {
@@ -93,7 +127,34 @@
 .metrics-sector-item p { margin-top: 0.2rem; font-size: 0.7rem; color: #b9c8e7; }
 .metrics-sector-item small { display: block; margin-top: 0.2rem; font-size: 0.62rem; color: #8ea3ce; }
 
+.metrics-sector-detail {
+  margin-top: 0.6rem;
+  border: 1px solid #334464;
+  border-radius: 10px;
+  background: #16243e;
+  padding: 0.55rem 0.6rem;
+}
+
+.metrics-sector-detail strong {
+  font-size: 0.78rem;
+  color: #f1f5ff;
+}
+
+.metrics-sector-detail p {
+  margin-top: 0.18rem;
+  font-size: 0.72rem;
+  color: #bfd0f1;
+}
+
+.metrics-sector-detail small {
+  display: block;
+  margin-top: 0.18rem;
+  font-size: 0.65rem;
+  color: #94aad7;
+}
+
 @media (max-width: 960px) {
   .metrics-evidence-list,
+  .metrics-2026-grid,
   .metrics-sector-grid { grid-template-columns: 1fr; }
 }

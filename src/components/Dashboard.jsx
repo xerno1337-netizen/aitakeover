@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Hero from './Hero'
 import ImpactMetrics from './ImpactMetrics'
 import JobCategories from './JobCategories'
@@ -9,6 +9,18 @@ import './Dashboard.css'
 
 function Dashboard() {
   const [activeTab, setActiveTab] = useState('overview')
+  const tabOrder = ['overview', 'evidence', 'signals', 'timeline', 'scenario', 'sources']
+
+  useEffect(() => {
+    const onKeyDown = (event) => {
+      const idx = Number(event.key)
+      if (idx >= 1 && idx <= 6) {
+        setActiveTab(tabOrder[idx - 1])
+      }
+    }
+    window.addEventListener('keydown', onKeyDown)
+    return () => window.removeEventListener('keydown', onKeyDown)
+  }, [])
 
   const renderTabContent = () => {
     if (activeTab === 'overview') {
@@ -44,7 +56,10 @@ function Dashboard() {
   return (
     <div className="dashboard">
       <header className="dashboard-topbar">
-        <div className="topbar-brand">AIScope</div>
+        <div className="topbar-brand">
+          <span className="brand-mark" aria-hidden="true" />
+          <span className="brand-text">JobScope</span>
+        </div>
         <nav className="topbar-nav">
           <button type="button" className={activeTab === 'overview' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('overview')}>Overview</button>
           <button type="button" className={activeTab === 'evidence' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('evidence')}>Evidence</button>
@@ -54,7 +69,7 @@ function Dashboard() {
           <button type="button" className={activeTab === 'sources' ? 'topbar-link active' : 'topbar-link'} onClick={() => setActiveTab('sources')}>Sources</button>
         </nav>
         <div className="topbar-actions">
-          <button type="button">Data Notes</button>
+          <button type="button">1-6 Tabs</button>
         </div>
       </header>
 

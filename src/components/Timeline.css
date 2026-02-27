@@ -91,6 +91,13 @@
   grid-template-columns: 0.45fr 1fr 1fr 1fr;
   font-size: 0.68rem;
   color: #b9caea;
+  cursor: pointer;
+  text-align: left;
+}
+
+.timeline-mini-row.active {
+  border-color: #5672ad;
+  background: #192744;
 }
 
 .timeline-mini-row span:first-child {

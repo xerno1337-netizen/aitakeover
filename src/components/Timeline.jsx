@@ -114,12 +114,17 @@ function Timeline() {
 
       <div className="timeline-mini-table">
         {timelineData.map((row) => (
-          <div key={row.year} className="timeline-mini-row">
+          <button
+            key={row.year}
+            type="button"
+            className={row.year === selectedYear ? 'timeline-mini-row active' : 'timeline-mini-row'}
+            onClick={() => setSelectedYear(row.year)}
+          >
             <span>{row.year}</span>
             <span>{(row.displacedCumulative / 1_000_000).toFixed(0)}M disp</span>
             <span>{(row.createdCumulative / 1_000_000).toFixed(0)}M created</span>
             <span>{row.genAiAdoptionPct}% adoption</span>
-          </div>
+          </button>
         ))}
       </div>
     </section>

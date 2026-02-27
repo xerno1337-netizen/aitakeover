@@ -1,8 +1,20 @@
-import React from 'react'
-import { evidenceStats, regionalExposure, sectorPressure } from '../data/jobData'
+import React, { useMemo, useState } from 'react'
+import { checkpoint2026, evidenceStats, regionalExposure, sectorPressure } from '../data/jobData'
 import './ImpactMetrics.css'
 
 function ImpactMetrics() {
+  const [sortKey, setSortKey] = useState('exposurePct')
+  const [selectedSector, setSelectedSector] = useState(sectorPressure[0]?.sector)
+
+  const sortedRegions = useMemo(() => {
+    return [...regionalExposure].sort((a, b) => b[sortKey] - a[sortKey])
+  }, [sortKey])
+
+  const selectedSectorRow = useMemo(
+    () => sectorPressure.find((row) => row.sector === selectedSector) ?? sectorPressure[0],
+    [selectedSector]
+  )
+
   return (
     <section className="metrics-panel">
       <div className="metrics-panel-head">
@@ -23,19 +35,37 @@ function ImpactMetrics() {
         ))}
       </div>
 
-      <div className="metrics-section-label">Regional exposure split</div>
+      <div className="metrics-section-label">2026 checkpoint (scenario baseline)</div>
+      <div className="metrics-2026-grid">
+        {checkpoint2026.map((item) => (
+          <article key={item.metric} className="metrics-2026-item">
+            <strong>{item.value}</strong>
+            <h3>{item.metric}</h3>
+            <p>{item.detail}</p>
+            <small>{item.source}</small>
+          </article>
+        ))}
+      </div>
+
+      <div className="metrics-section-label">Regional exposure split (click headers to sort)</div>
       <div className="metrics-table-wrap">
         <table className="metrics-table">
           <thead>
             <tr>
               <th>Region</th>
-              <th>Exposure</th>
-              <th>High risk</th>
-              <th>Augmentation</th>
+              <th>
+                <button type="button" onClick={() => setSortKey('exposurePct')}>Exposure</button>
+              </th>
+              <th>
+                <button type="button" onClick={() => setSortKey('highAutomationRiskPct')}>High risk</button>
+              </th>
+              <th>
+                <button type="button" onClick={() => setSortKey('augmentationPotentialPct')}>Augmentation</button>
+              </th>
             </tr>
           </thead>
           <tbody>
-            {regionalExposure.map((row) => (
+            {sortedRegions.map((row) => (
               <tr key={row.region}>
                 <td>{row.region}</td>
                 <td>{row.exposurePct}%</td>
@@ -50,7 +80,11 @@ function ImpactMetrics() {
       <div className="metrics-section-label">Sector pressure monitor</div>
       <div className="metrics-sector-grid">
         {sectorPressure.map((item) => (
-          <article key={item.sector} className="metrics-sector-item">
+          <article
+            key={item.sector}
+            className={item.sector === selectedSector ? 'metrics-sector-item active' : 'metrics-sector-item'}
+            onClick={() => setSelectedSector(item.sector)}
+          >
             <div className="metrics-sector-top">
               <strong>{item.sector}</strong>
               <span>{item.pressureLevel}</span>
@@ -60,6 +94,14 @@ function ImpactMetrics() {
           </article>
         ))}
       </div>
+
+      {selectedSectorRow && (
+        <div className="metrics-sector-detail">
+          <strong>{selectedSectorRow.sector}</strong>
+          <p>{selectedSectorRow.signal}</p>
+          <small>Exposure: {selectedSectorRow.taskExposurePct}% • {selectedSectorRow.source}</small>
+        </div>
+      )}
     </section>
   )
 }
