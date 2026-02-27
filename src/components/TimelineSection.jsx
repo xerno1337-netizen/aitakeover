@@ -7,7 +7,7 @@ function TimelineSection() {
   return (
     <div className="timeline-section">
       <div className="section-header">
-        <h2>PROJECTION TIMELINE</h2>
+        <h2>Projection Timeline</h2>
         <p>AI automation progression from 2024 to 2040</p>
       </div>
 
@@ -15,39 +15,38 @@ function TimelineSection() {
         <div className="chart-card">
           <div className="chart-header">
             <h3>Global Automation Rate</h3>
-            <div className="chart-badge">2040: 94%</div>
           </div>
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart data={timelineData}>
               <defs>
                 <linearGradient id="colorAutomation" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#ff0066" stopOpacity={0.4}/>
-                  <stop offset="95%" stopColor="#ff0066" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.2}/>
+                  <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 255, 255, 0.1)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
               <XAxis 
                 dataKey="year" 
-                stroke="rgba(255, 255, 255, 0.5)"
-                tick={{ fill: 'rgba(255, 255, 255, 0.6)', fontSize: 12 }}
+                stroke="#666"
+                tick={{ fill: '#666', fontSize: 12 }}
               />
               <YAxis 
-                stroke="rgba(255, 255, 255, 0.5)"
-                tick={{ fill: 'rgba(255, 255, 255, 0.6)', fontSize: 12 }}
-                label={{ value: 'Automation %', angle: -90, position: 'insideLeft', fill: 'rgba(255, 255, 255, 0.6)' }}
+                stroke="#666"
+                tick={{ fill: '#666', fontSize: 12 }}
+                label={{ value: 'Automation %', angle: -90, position: 'insideLeft', fill: '#666' }}
               />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'rgba(10, 10, 15, 0.95)', 
-                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  backgroundColor: '#ffffff', 
+                  border: '1px solid #e5e5e5',
                   borderRadius: '8px',
-                  color: '#ffffff'
+                  color: '#1a1a1a'
                 }}
               />
               <Area 
                 type="monotone" 
                 dataKey="automation" 
-                stroke="#ff0066" 
+                stroke="#3b82f6" 
                 strokeWidth={3}
                 fillOpacity={1}
                 fill="url(#colorAutomation)"
@@ -59,47 +58,46 @@ function TimelineSection() {
         <div className="chart-card">
           <div className="chart-header">
             <h3>Job Displacement vs Creation</h3>
-            <div className="chart-badge">Net Loss</div>
           </div>
           <ResponsiveContainer width="100%" height={400}>
             <LineChart data={timelineData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 255, 255, 0.1)" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e5e5" />
               <XAxis 
                 dataKey="year" 
-                stroke="rgba(255, 255, 255, 0.5)"
-                tick={{ fill: 'rgba(255, 255, 255, 0.6)', fontSize: 12 }}
+                stroke="#666"
+                tick={{ fill: '#666', fontSize: 12 }}
               />
               <YAxis 
-                stroke="rgba(255, 255, 255, 0.5)"
-                tick={{ fill: 'rgba(255, 255, 255, 0.6)', fontSize: 12 }}
-                label={{ value: 'Jobs (millions)', angle: -90, position: 'insideLeft', fill: 'rgba(255, 255, 255, 0.6)' }}
+                stroke="#666"
+                tick={{ fill: '#666', fontSize: 12 }}
+                label={{ value: 'Jobs (millions)', angle: -90, position: 'insideLeft', fill: '#666' }}
               />
               <Tooltip 
                 contentStyle={{ 
-                  backgroundColor: 'rgba(10, 10, 15, 0.95)', 
-                  border: '1px solid rgba(0, 255, 255, 0.3)',
+                  backgroundColor: '#ffffff', 
+                  border: '1px solid #e5e5e5',
                   borderRadius: '8px',
-                  color: '#ffffff'
+                  color: '#1a1a1a'
                 }}
               />
               <Legend 
-                wrapperStyle={{ color: 'rgba(255, 255, 255, 0.7)' }}
+                wrapperStyle={{ color: '#666' }}
               />
               <Line 
                 type="monotone" 
                 dataKey="jobsDisplaced" 
-                stroke="#ff0066" 
+                stroke="#dc2626" 
                 strokeWidth={3}
                 name="Jobs Displaced"
-                dot={{ fill: '#ff0066', r: 4 }}
+                dot={{ fill: '#dc2626', r: 4 }}
               />
               <Line 
                 type="monotone" 
                 dataKey="newJobsCreated" 
-                stroke="#00ff00" 
+                stroke="#10b981" 
                 strokeWidth={3}
                 name="New Jobs Created"
-                dot={{ fill: '#00ff00', r: 4 }}
+                dot={{ fill: '#10b981', r: 4 }}
               />
             </LineChart>
           </ResponsiveContainer>

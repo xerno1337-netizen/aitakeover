@@ -12,15 +12,9 @@ function JobThreats() {
   })
 
   const getThreatColor = (threatLevel) => {
-    if (threatLevel >= 80) return '#ff0066'
-    if (threatLevel >= 60) return '#ffa500'
-    return '#00ff00'
-  }
-
-  const getTimeColor = (years) => {
-    if (years <= 2) return '#ff0066'
-    if (years <= 5) return '#ffa500'
-    return '#00ff00'
+    if (threatLevel >= 80) return '#dc2626'
+    if (threatLevel >= 60) return '#f59e0b'
+    return '#10b981'
   }
 
   const formatNumber = (num) => {
@@ -32,7 +26,7 @@ function JobThreats() {
   return (
     <div className="job-threats-section">
       <div className="section-header">
-        <h2>JOB THREAT ANALYSIS</h2>
+        <h2>Job Category Analysis</h2>
         <p>Detailed breakdown of AI automation timelines by profession</p>
       </div>
 
@@ -62,10 +56,7 @@ function JobThreats() {
               </div>
               <div 
                 className="threat-badge"
-                style={{ 
-                  backgroundColor: getThreatColor(job.threatLevel),
-                  boxShadow: `0 0 20px ${getThreatColor(job.threatLevel)}`
-                }}
+                style={{ backgroundColor: getThreatColor(job.threatLevel) }}
               >
                 {job.threatLevel}%
               </div>
@@ -76,10 +67,7 @@ function JobThreats() {
             <div className="job-metrics">
               <div className="metric">
                 <div className="metric-label">Time to Automation</div>
-                <div 
-                  className="metric-value"
-                  style={{ color: getTimeColor(job.yearsToAutomation) }}
-                >
+                <div className="metric-value">
                   {job.yearsToAutomation === 0.5 ? '6 months' : 
                    job.yearsToAutomation === 1 ? '1 year' :
                    job.yearsToAutomation === 1.5 ? '1.5 years' :
@@ -102,31 +90,13 @@ function JobThreats() {
                   className="automation-fill"
                   style={{ 
                     width: `${job.currentAutomation}%`,
-                    backgroundColor: getThreatColor(job.threatLevel),
-                    boxShadow: `0 0 15px ${getThreatColor(job.threatLevel)}`
+                    backgroundColor: getThreatColor(job.threatLevel)
                   }}
                 ></div>
               </div>
               <div className="automation-label">
                 <span>Current: {job.currentAutomation}%</span>
-                <span>Target: {job.threatLevel}%</span>
-              </div>
-            </div>
-
-            <div className="job-timeline">
-              <div className="timeline-item">
-                <div className="timeline-dot current"></div>
-                <div className="timeline-content">
-                  <strong>2024</strong>
-                  <span>{job.currentAutomation}% automated</span>
-                </div>
-              </div>
-              <div className="timeline-item">
-                <div className="timeline-dot future"></div>
-                <div className="timeline-content">
-                  <strong>{2024 + Math.ceil(job.yearsToAutomation)}</strong>
-                  <span>Full automation expected</span>
-                </div>
+                <span>Projected: {job.threatLevel}%</span>
               </div>
             </div>
           </div>

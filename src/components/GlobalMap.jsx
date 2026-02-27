@@ -7,26 +7,25 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json"
 
 function GlobalMap() {
   const [selectedCountry, setSelectedCountry] = useState(null)
-  const [hoveredCountry, setHoveredCountry] = useState(null)
 
   const getThreatColor = (threatLevel) => {
-    if (threatLevel >= 85) return '#ff0066'
-    if (threatLevel >= 75) return '#ffa500'
-    return '#00ff00'
+    if (threatLevel >= 85) return '#dc2626'
+    if (threatLevel >= 75) return '#f59e0b'
+    return '#10b981'
   }
 
   const getMarkerSize = (jobsAtRisk) => {
-    if (jobsAtRisk > 50000000) return 14
-    if (jobsAtRisk > 20000000) return 12
-    if (jobsAtRisk > 10000000) return 10
-    return 8
+    if (jobsAtRisk > 50000000) return 12
+    if (jobsAtRisk > 20000000) return 10
+    if (jobsAtRisk > 10000000) return 8
+    return 6
   }
 
   return (
     <div className="global-map-section">
       <div className="section-header">
-        <h2>GLOBAL THREAT DISPERSION</h2>
-        <p>Country-by-country AI adoption and job displacement analysis</p>
+        <h2>Global Impact</h2>
+        <p>Country-by-country analysis of AI adoption and job displacement</p>
       </div>
 
       <div className="map-container">
@@ -44,25 +43,20 @@ function GlobalMap() {
                   const country = countryData.find(
                     c => c.code === geo.properties.ISO_A2
                   )
-                  const isHovered = hoveredCountry === geo.properties.ISO_A2
                   const isSelected = selectedCountry?.code === geo.properties.ISO_A2
                   
                   return (
                     <Geography
                       key={geo.rsmKey}
                       geography={geo}
-                      fill={country ? getThreatColor(country.threatLevel) : '#1a1a2e'}
-                      stroke={isSelected ? '#00ffff' : isHovered ? '#ffffff' : '#0a0a0f'}
-                      strokeWidth={isSelected ? 2 : isHovered ? 1.5 : 0.5}
+                      fill={country ? getThreatColor(country.threatLevel) : '#f5f5f5'}
+                      stroke={isSelected ? '#1a1a1a' : '#ffffff'}
+                      strokeWidth={isSelected ? 1.5 : 0.5}
                       style={{
                         default: { outline: 'none' },
-                        hover: { outline: 'none', fill: country ? getThreatColor(country.threatLevel) : '#2a2a3e' },
+                        hover: { outline: 'none', fill: country ? getThreatColor(country.threatLevel) : '#e5e5e5' },
                         pressed: { outline: 'none' }
                       }}
-                      onMouseEnter={() => {
-                        if (country) setHoveredCountry(geo.properties.ISO_A2)
-                      }}
-                      onMouseLeave={() => setHoveredCountry(null)}
                       onClick={() => {
                         if (country) {
                           setSelectedCountry(country)
@@ -80,7 +74,7 @@ function GlobalMap() {
                   fill={getThreatColor(country.threatLevel)}
                   stroke="#ffffff"
                   strokeWidth={1.5}
-                  opacity={0.9}
+                  opacity={0.8}
                   style={{ cursor: 'pointer' }}
                   onClick={() => setSelectedCountry(country)}
                 />
@@ -99,9 +93,7 @@ function GlobalMap() {
               <div className="detail-grid">
                 <div className="detail-item">
                   <div className="detail-label">Threat Level</div>
-                  <div className="detail-value" style={{ color: getThreatColor(selectedCountry.threatLevel) }}>
-                    {selectedCountry.threatLevel}%
-                  </div>
+                  <div className="detail-value">{selectedCountry.threatLevel}%</div>
                 </div>
                 <div className="detail-item">
                   <div className="detail-label">AI Adoption</div>
@@ -116,9 +108,6 @@ function GlobalMap() {
                   <div className="detail-value">{selectedCountry.aiInvestment}</div>
                 </div>
               </div>
-              <div className="detail-note">
-                <strong>Primary Threat:</strong> {selectedCountry.topThreat}
-              </div>
             </div>
           </div>
         )}
@@ -128,15 +117,15 @@ function GlobalMap() {
         <div className="legend-title">Threat Classification</div>
         <div className="legend-items">
           <div className="legend-item">
-            <div className="legend-color" style={{ backgroundColor: '#ff0066' }}></div>
+            <div className="legend-color" style={{ backgroundColor: '#dc2626' }}></div>
             <span>Critical (85%+)</span>
           </div>
           <div className="legend-item">
-            <div className="legend-color" style={{ backgroundColor: '#ffa500' }}></div>
+            <div className="legend-color" style={{ backgroundColor: '#f59e0b' }}></div>
             <span>High (75-85%)</span>
           </div>
           <div className="legend-item">
-            <div className="legend-color" style={{ backgroundColor: '#00ff00' }}></div>
+            <div className="legend-color" style={{ backgroundColor: '#10b981' }}></div>
             <span>Moderate (&lt;75%)</span>
           </div>
         </div>

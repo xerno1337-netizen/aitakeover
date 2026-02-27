@@ -1,22 +1,22 @@
 .global-map-section {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 3rem 2rem;
+  padding: 0 2rem;
 }
 
 .map-container {
   position: relative;
-  background: rgba(15, 15, 25, 0.6);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 16px;
   padding: 2rem;
   margin-bottom: 2rem;
-  backdrop-filter: blur(10px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .map-wrapper {
-  background: #0a0a0f;
-  border-radius: 8px;
+  background: #fafafa;
+  border-radius: 12px;
   overflow: hidden;
   position: relative;
 }
@@ -25,26 +25,13 @@
   position: absolute;
   top: 2rem;
   right: 2rem;
-  background: rgba(10, 10, 15, 0.95);
-  border: 1px solid rgba(0, 255, 255, 0.3);
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 1.5rem;
-  min-width: 300px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-  animation: slideInRight 0.3s ease-out;
+  min-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 10;
-}
-
-@keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .panel-header {
@@ -53,26 +40,26 @@
   align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .panel-header h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1a1a1a;
   margin: 0;
 }
 
 .panel-header button {
   background: transparent;
   border: none;
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.5rem;
+  color: #666;
   cursor: pointer;
   line-height: 1;
   padding: 0;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,8 +68,8 @@
 }
 
 .panel-header button:hover {
-  background: rgba(255, 0, 102, 0.2);
-  color: #ff0066;
+  background: #f5f5f5;
+  color: #1a1a1a;
 }
 
 .panel-content {
@@ -100,56 +87,41 @@
 .detail-item {
   text-align: center;
   padding: 1rem;
-  background: rgba(0, 255, 255, 0.05);
-  border: 1px solid rgba(0, 255, 255, 0.1);
+  background: #fafafa;
   border-radius: 8px;
 }
 
 .detail-label {
   font-size: 0.75rem;
-  color: rgba(255, 255, 255, 0.5);
+  color: #666;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .detail-value {
   font-size: 1.5rem;
-  font-weight: 700;
-  color: #00ffff;
+  font-weight: 600;
+  color: #1a1a1a;
   font-variant-numeric: tabular-nums;
-  font-family: 'Courier New', monospace;
-}
-
-.detail-note {
-  padding: 1rem;
-  background: rgba(255, 0, 102, 0.1);
-  border: 1px solid rgba(255, 0, 102, 0.2);
-  border-radius: 8px;
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 0.9rem;
-}
-
-.detail-note strong {
-  color: #ff0066;
 }
 
 .map-legend {
-  background: rgba(15, 15, 25, 0.6);
-  border: 1px solid rgba(0, 255, 255, 0.2);
+  background: #fafafa;
+  border: 1px solid #e5e5e5;
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
-  backdrop-filter: blur(10px);
 }
 
 .legend-title {
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
+  color: #1a1a1a;
   margin-bottom: 1rem;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 .legend-items {
@@ -163,16 +135,15 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  color: #666;
 }
 
 .legend-color {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  box-shadow: 0 0 10px currentColor;
+  border: 1px solid #e5e5e5;
 }
 
 @media (max-width: 1024px) {
@@ -186,7 +157,7 @@
 
 @media (max-width: 768px) {
   .global-map-section {
-    padding: 2rem 1rem;
+    padding: 0 1rem;
   }
   
   .map-container {

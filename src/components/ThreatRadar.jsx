@@ -12,7 +12,7 @@ function ThreatRadar() {
 
     const resizeCanvas = () => {
       const container = canvas.parentElement
-      const size = Math.min(container?.clientWidth || 900, 900)
+      const size = Math.min(container?.clientWidth || 1000, 1000)
       canvas.width = size
       canvas.height = size
     }
@@ -27,30 +27,30 @@ function ThreatRadar() {
     const draw = () => {
       const centerX = canvas.width / 2
       const centerY = canvas.height / 2
-      const maxRadius = Math.min(centerX, centerY) - 60
+      const maxRadius = Math.min(centerX, centerY) - 100
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // Draw outer glow
-      const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, maxRadius + 20)
-      gradient.addColorStop(0, 'rgba(0, 255, 255, 0.1)')
-      gradient.addColorStop(1, 'rgba(0, 255, 255, 0)')
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-
-      // Draw radar circles
+      // Draw radar circles with labels
       for (let i = 1; i <= 5; i++) {
-        ctx.strokeStyle = `rgba(0, 255, 255, ${0.2 - i * 0.03})`
+        const radius = (maxRadius / 5) * i
+        ctx.strokeStyle = '#e0e0e0'
         ctx.lineWidth = 1
         ctx.beginPath()
-        ctx.arc(centerX, centerY, (maxRadius / 5) * i, 0, Math.PI * 2)
+        ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
         ctx.stroke()
+        
+        // Draw threat level labels
+        ctx.fillStyle = '#999'
+        ctx.font = '400 11px -apple-system, BlinkMacSystemFont, sans-serif'
+        ctx.textAlign = 'left'
+        ctx.fillText(`${i * 20}%`, centerX + radius + 8, centerY)
       }
 
       // Draw radar lines
       for (let i = 0; i < 12; i++) {
         const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2
-        ctx.strokeStyle = 'rgba(0, 255, 255, 0.15)'
+        ctx.strokeStyle = '#e0e0e0'
         ctx.lineWidth = 1
         ctx.beginPath()
         ctx.moveTo(centerX, centerY)
@@ -69,68 +69,61 @@ function ThreatRadar() {
         const y = centerY + Math.sin(angle) * radius
 
         // Draw line to job
-        const lineAlpha = 0.2 + (job.threatLevel / 100) * 0.3
         ctx.strokeStyle = job.threatLevel > 80 
-          ? `rgba(255, 0, 102, ${lineAlpha})`
+          ? '#dc2626'
           : job.threatLevel > 60 
-          ? `rgba(255, 165, 0, ${lineAlpha})`
-          : `rgba(0, 255, 0, ${lineAlpha})`
-        ctx.lineWidth = 2
+          ? '#f59e0b'
+          : '#10b981'
+        ctx.lineWidth = 1.5
+        ctx.globalAlpha = 0.2
         ctx.beginPath()
         ctx.moveTo(centerX, centerY)
         ctx.lineTo(x, y)
         ctx.stroke()
+        ctx.globalAlpha = 1
 
-        // Draw job point with glow
-        const pointGradient = ctx.createRadialGradient(x, y, 0, x, y, 12)
-        pointGradient.addColorStop(0, job.threatLevel > 80 
-          ? 'rgba(255, 0, 102, 1)'
+        // Draw job point with ring
+        const pointColor = job.threatLevel > 80 
+          ? '#dc2626'
           : job.threatLevel > 60 
-          ? 'rgba(255, 165, 0, 1)'
-          : 'rgba(0, 255, 0, 1)')
-        pointGradient.addColorStop(1, job.threatLevel > 80 
-          ? 'rgba(255, 0, 102, 0)'
-          : job.threatLevel > 60 
-          ? 'rgba(255, 165, 0, 0)'
-          : 'rgba(0, 255, 0, 0)')
+          ? '#f59e0b'
+          : '#10b981'
         
-        ctx.fillStyle = pointGradient
+        // Outer ring
+        ctx.strokeStyle = pointColor
+        ctx.lineWidth = 2
         ctx.beginPath()
-        ctx.arc(x, y, 12, 0, Math.PI * 2)
-        ctx.fill()
-
-        // Draw job point
-        ctx.fillStyle = job.threatLevel > 80 
-          ? '#ff0066'
-          : job.threatLevel > 60 
-          ? '#ffa500'
-          : '#00ff00'
+        ctx.arc(x, y, 10, 0, Math.PI * 2)
+        ctx.stroke()
+        
+        // Inner point
+        ctx.fillStyle = pointColor
         ctx.beginPath()
         ctx.arc(x, y, 6, 0, Math.PI * 2)
         ctx.fill()
 
         // Draw job label
-        ctx.fillStyle = '#ffffff'
-        ctx.font = 'bold 11px Inter'
+        ctx.fillStyle = '#1a1a1a'
+        ctx.font = '500 12px -apple-system, BlinkMacSystemFont, sans-serif'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
-        const labelX = centerX + Math.cos(angle) * (maxRadius + 35)
-        const labelY = centerY + Math.sin(angle) * (maxRadius + 35)
+        const labelX = centerX + Math.cos(angle) * (maxRadius + 50)
+        const labelY = centerY + Math.sin(angle) * (maxRadius + 50)
         ctx.fillText(job.name, labelX, labelY)
+        
+        // Draw threat percentage
+        ctx.fillStyle = '#666'
+        ctx.font = '400 10px -apple-system, BlinkMacSystemFont, sans-serif'
+        ctx.fillText(`${job.threatLevel}%`, labelX, labelY + 16)
       })
 
       // Draw scanning line
-      scanAngle += 0.015
+      scanAngle += 0.008
       if (scanAngle > Math.PI * 2) scanAngle = 0
 
-      const scanGradient = ctx.createLinearGradient(centerX, centerY, 
-        centerX + Math.cos(scanAngle) * maxRadius, 
-        centerY + Math.sin(scanAngle) * maxRadius)
-      scanGradient.addColorStop(0, 'rgba(0, 255, 255, 0.4)')
-      scanGradient.addColorStop(0.5, 'rgba(0, 255, 255, 0.2)')
-      scanGradient.addColorStop(1, 'rgba(0, 255, 255, 0)')
-      ctx.strokeStyle = scanGradient
-      ctx.lineWidth = 3
+      ctx.strokeStyle = '#3b82f6'
+      ctx.lineWidth = 2
+      ctx.globalAlpha = 0.3
       ctx.beginPath()
       ctx.moveTo(centerX, centerY)
       ctx.lineTo(
@@ -138,14 +131,13 @@ function ThreatRadar() {
         centerY + Math.sin(scanAngle) * maxRadius
       )
       ctx.stroke()
+      ctx.globalAlpha = 1
 
       // Draw center point
-      ctx.fillStyle = '#00ffff'
+      ctx.fillStyle = '#3b82f6'
       ctx.beginPath()
       ctx.arc(centerX, centerY, 4, 0, Math.PI * 2)
       ctx.fill()
-      ctx.shadowBlur = 20
-      ctx.shadowColor = '#00ffff'
     }
 
     const animate = () => {
@@ -164,8 +156,8 @@ function ThreatRadar() {
   return (
     <div className="threat-radar-section">
       <div className="section-header">
-        <h2>THREAT RADAR</h2>
-        <p>Real-time AI job displacement monitoring</p>
+        <h2>Threat Analysis</h2>
+        <p>Job displacement risk by profession</p>
       </div>
       
       <div className="radar-container">
