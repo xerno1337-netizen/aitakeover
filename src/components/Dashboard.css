@@ -1,34 +1,83 @@
 .dashboard {
   min-height: 100vh;
-  background: #ffffff;
+  background: #f6f7fb;
 }
 
-.dashboard-grid {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 0 2rem;
+.dashboard-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 180px 1fr 160px;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.25rem;
+  border-bottom: 1px solid #232323;
+  background: #0f1116;
+  color: #f5f5f5;
+}
+
+.topbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: #c8c8c8;
+}
+
+.topbar-actions button {
+  justify-self: end;
+  border: 1px solid #3a3a3a;
+  background: #1a1d26;
+  color: #f5f5f5;
+  border-radius: 6px;
+  padding: 0.45rem 0.8rem;
+  font-size: 0.78rem;
+}
+
+.dashboard-main-grid {
+  max-width: 1500px;
+  margin: 1rem auto 0;
+  padding: 0 1rem 1rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-  padding-bottom: 4rem;
+  gap: 1rem;
 }
 
-.dashboard-left,
-.dashboard-right {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.dashboard-panel {
+  min-height: 520px;
 }
 
-@media (max-width: 1200px) {
-  .dashboard-grid {
+.panel-jobs,
+.panel-timeline {
+  min-height: 560px;
+}
+
+@media (max-width: 1100px) {
+  .dashboard-main-grid {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-panel,
+  .panel-jobs,
+  .panel-timeline {
+    min-height: 420px;
   }
 }
 
-@media (max-width: 768px) {
-  .dashboard-grid {
-    padding: 0 1rem;
-    gap: 1.5rem;
+@media (max-width: 760px) {
+  .dashboard-topbar {
+    grid-template-columns: 1fr auto;
+    height: auto;
+    padding: 0.75rem 1rem;
+  }
+
+  .topbar-nav {
+    display: none;
   }
 }
